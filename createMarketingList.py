@@ -22,20 +22,27 @@
 
 
 import csv
+from unicodedata import name
 
 # open the vendorlist file
-
+infile = open('VendorList.csv', 'r')
 
 # create a csv object from the file object
 
 
 # create an output file
+outfile = open('marketinglistFINAL.csv', 'w')
+outfile.write('Name, Email, Phone','\n')
 
 
-
-
+csvfile = csv.reader(infile,delimiter=',')
+for record in csvfile:
+    full_name = record[1] + '' + record[2]
+    email = record[4]
+    phone = record[5]
 
 # create an empty dictionary
+marketinglist = {'name':[{'Email': email, 'Phone':phone}]}
 
 
 
@@ -45,10 +52,11 @@ import csv
 
 
     # add the key-value pair to the dictionary
-
-
+for x in marketinglist['Name']:
+    outfile.write(str(x['name'])+','str(x['email'])+',' str(x['phone'])+,'\n')
 
 # print the dictionary after the loop is finished
+print(marketinglist['Name']['email']['phone'])
 
 
 
@@ -57,4 +65,4 @@ import csv
 
 
 # close your output file
-
+outfile.close()
